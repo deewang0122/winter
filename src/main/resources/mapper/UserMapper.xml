@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.winter.dao.mybatis.UserMapper">
+    <resultMap id="BaseResultMap" type="com.example.winter.entity.user.User">
+
+    </resultMap>
+
+    <!--用户登录查询  -->
+    <select id="findAll" resultType="com.example.winter.entity.user.User">
+      select * from user where 1=1
+    </select>
+
+
+</mapper>
