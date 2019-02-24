@@ -11,8 +11,6 @@ server:
     context-path: winter
 
 mybatis:
-  #config-location: classpath:mapper/*.xml
   type-aliases-package: com.example.winter.entity
-  # mapper-locations: classpath:com/example/winter/dao/mybatis/*.xml
   mapper-locations: classpath:mapper/*.xml
 

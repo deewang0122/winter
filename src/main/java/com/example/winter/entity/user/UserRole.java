@@ -2,24 +2,30 @@ package com.example.winter.entity.user;
 
 import com.example.winter.common.BaseVo;
 import com.example.winter.common.StatusEnum;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Data
-@Table
+@Table(name = "user_role")
 @NoArgsConstructor
-public class Role extends BaseVo {
-
+public class UserRole extends BaseVo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @NotBlank(message = "角色名称不能为空！")
-    String name;
+    @ManyToOne
+    User user;
+
+    @ManyToOne
+    Role role;
 
     @Column(insertable = true, updatable = false)
     String status = StatusEnum.enable.getKey();

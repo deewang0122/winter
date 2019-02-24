@@ -6,6 +6,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class JsonUtil {
+    /**
+     * 对象转字符串
+     * @param object
+     * @return
+     */
     public static String objToStr(Object object) {
         String str = "";
 

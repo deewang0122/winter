@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,7 +18,6 @@ public class User extends BaseVo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
     Long id;
 
     @Size(min = 2, max = 10, message = "姓名不允许超过10个字符，且不能少于2个字符！")
@@ -38,4 +38,10 @@ public class User extends BaseVo {
 
     @NotEmpty(message = "用户状态不能为空！")
     String status = StatusEnum.enable.getKey();
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName ="id")})
+    Set<Role> roles;
 }

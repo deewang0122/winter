@@ -1,9 +1,10 @@
 package com.example.winter;
 
 import com.example.winter.common.StatusEnum;
-import com.example.winter.dao.jpa.UserRepository;
+import com.example.winter.dao.jpa.UserDao;
 import com.example.winter.dao.mybatis.UserMapper;
 import com.example.winter.entity.user.User;
+import com.example.winter.service.user.UserService;
 import com.example.winter.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -21,10 +23,13 @@ import java.util.List;
 public class WinterApplicationTests {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDao userDao;
 
     @Resource
     private UserMapper userMapper;
+
+    @Autowired
+    private UserService userService;
 
     @Test
     public void contextLoads() {
@@ -43,16 +48,25 @@ public class WinterApplicationTests {
             //user.setCreateTime(Instant.now());
             user.setCreateBy(12L);
         }
-        userRepository.save(user);
-        List<User> list = userRepository.findAll();
+        userDao.save(user);
+        List<User> list = userDao.findAll();
 
         log.info(JsonUtil.objToStr(list));
     }
 
     @Test
     public void testMybatis() {
-        log.info(userMapper.findOne(1L).getName());
-        log.info( JsonUtil.objToStr(userMapper.findAll()) );
+        Optional<User> user = userDao.findById(2L);
+        log.info(JsonUtil.objToStr(user.get()));
+        //log.info( JsonUtil.objToStr(userMapper.findAll()) );
+    }
+
+    @Test
+    public void test() {
+        User user = new User();
+        user.setId(1L);
+
+        userService.delete(user);
     }
 
 }
