@@ -1,16 +1,13 @@
 package com.example.winter.common;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
-public enum StatusEnum {
-    ENABLE("10", "有效"),
-    DISABLE("10", "无效"),
-    PAUSE("30", "暂停");
+public enum ObjEnum {
+    USER("10", "关联用户"),
+    ROLE("20", "关联角色");
 
     String key;
 

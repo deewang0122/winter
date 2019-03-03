@@ -1,32 +1,36 @@
-package com.example.winter.dto.user;
+package com.example.winter.dto;
 
 import com.example.winter.common.BaseVo;
-import com.example.winter.common.StatusEnum;
-import com.example.winter.entity.user.Role;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Data
-public class UserDto extends BaseVo {
+public class MenuDto extends BaseVo {
 
     Long id;
 
     String name;
 
-    String password;
+    String url = "0";
 
-    String loginCode;
+    String menuCode;
 
-    String telephone;
+    Long parMenuId;
+
+    Long menuIndex = 0L;
 
     String status;
+
+    String funcType;
+
+    String menuType;
+
+    Boolean isMainRole;
+
+    String mark;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     Date createTime;
@@ -38,5 +42,6 @@ public class UserDto extends BaseVo {
 
     Long updateBy;
 
-    Set<Role> roles;
+    List<MenuDto> childMenus;
+
 }

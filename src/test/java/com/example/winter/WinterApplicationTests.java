@@ -4,6 +4,7 @@ import com.example.winter.common.StatusEnum;
 import com.example.winter.dao.jpa.UserDao;
 import com.example.winter.dao.mybatis.UserMapper;
 import com.example.winter.entity.user.User;
+import com.example.winter.service.user.MenuService;
 import com.example.winter.service.user.UserService;
 import com.example.winter.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,9 @@ public class WinterApplicationTests {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MenuService menuService;
+
     @Test
     public void contextLoads() {
     }
@@ -43,7 +47,7 @@ public class WinterApplicationTests {
             user.setName("1");
             user.setLoginCode("code");
             user.setPassword("");
-            user.setStatus(StatusEnum.enable.getKey());
+            user.setStatus(StatusEnum.ENABLE.getKey());
             user.setTelephone("1372058327");
             //user.setCreateTime(Instant.now());
             user.setCreateBy(12L);
@@ -56,9 +60,10 @@ public class WinterApplicationTests {
 
     @Test
     public void testMybatis() {
+        log.info(StatusEnum.ENABLE.getKey() + "");
         Optional<User> user = userDao.findById(2L);
         log.info(JsonUtil.objToStr(user.get()));
-        //log.info( JsonUtil.objToStr(userMapper.findAll()) );
+        log.info( JsonUtil.objToStr(userMapper.findAll()) );
     }
 
     @Test
@@ -67,6 +72,11 @@ public class WinterApplicationTests {
         user.setId(1L);
 
         userService.delete(user);
+    }
+
+    @Test
+    public void test2() {
+        log.info(JsonUtil.objToStr(menuService.findAll(2L)));
     }
 
 }

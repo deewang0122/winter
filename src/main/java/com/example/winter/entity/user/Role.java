@@ -14,15 +14,11 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class Role extends BaseVo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-
     @NotBlank(message = "角色名称不能为空！")
     String name;
 
     @Column(insertable = true, updatable = false)
-    String status = StatusEnum.enable.getKey();
+    String status = StatusEnum.ENABLE.getKey();
 
     String mark;
 }

@@ -14,7 +14,7 @@ public class Result<T> {
 
         String name;
 
-        private ResultFlag(String name) {
+        ResultFlag(String name) {
             this.name = name;
         }
     }

@@ -1,12 +1,13 @@
 package com.example.winter.controller;
 
-import com.example.winter.dto.user.UserDto;
+import com.example.winter.dto.UserDto;
 import com.example.winter.entity.user.User;
 import com.example.winter.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -65,12 +66,14 @@ public class UserController {
     }
 
     @GetMapping("findById/{id}")
-    public UserDto findById(@PathVariable("id") Long id) {
+    public Mono<UserDto> findById(@PathVariable("id") Long id) {
         log.info("查询用户详情，id = {}", id);
 
         UserDto userDto = new UserDto();
         userDto = userService.findById(id);
+        userDto = null;
+        //return Mono.just(userDto);
 
-        return userDto;
+        return Mono.create(userDtoMonoSink -> userDtoMonoSink.success(userService.findById(id)));
     }
 }

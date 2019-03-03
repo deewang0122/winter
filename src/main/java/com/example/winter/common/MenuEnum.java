@@ -1,16 +1,13 @@
 package com.example.winter.common;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
-public enum StatusEnum {
-    ENABLE("10", "有效"),
-    DISABLE("10", "无效"),
-    PAUSE("30", "暂停");
+public enum MenuEnum {
+    ENCLICK("10", "功能菜单"),
+    UNCLICK("20", "目录菜单");
 
     String key;
 

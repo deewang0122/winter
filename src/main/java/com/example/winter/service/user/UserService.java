@@ -1,7 +1,7 @@
 package com.example.winter.service.user;
 
 import com.example.winter.dao.jpa.UserDao;
-import com.example.winter.dto.user.UserDto;
+import com.example.winter.dto.UserDto;
 import com.example.winter.entity.user.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
