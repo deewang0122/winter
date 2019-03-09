@@ -35,4 +35,6 @@ public class UserDto extends BaseVo {
     Set<Role> roles;
 
     List<MenuDto> menus;
+
+    String token;
 }

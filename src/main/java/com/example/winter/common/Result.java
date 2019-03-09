@@ -10,22 +10,41 @@ import lombok.NoArgsConstructor;
 public class Result<T> {
 
     public enum ResultFlag {
-        SUCCESS("成功"), FAIL("失败");
+        SUCCESS("success", "成功"), FAIL("fail", "失败");
 
-        String name;
+        String key;
 
-        ResultFlag(String name) {
-            this.name = name;
+        String value;
+
+        public String getKey() {
+            return key;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setKey(String key) {
+            this.key = key;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+
+        ResultFlag(String key, String value) {
+            this.key = key;
+            this.value = value;
         }
     }
 
-    private ResultFlag flag;
+    private String flag;
 
     private String message;
 
     private T data;
 
-    public Result(ResultFlag flag, String message) {
+    public Result(String flag, String message) {
         this.flag = flag;
         this.message = message;
     }

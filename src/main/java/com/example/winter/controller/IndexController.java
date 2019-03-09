@@ -25,7 +25,7 @@ public class IndexController {
     @GetMapping
     public Result index(ServerRequest request) {
         log.info("sessionId" + request.session()+ ",");
-        return new Result(Result.ResultFlag.SUCCESS, "" + request.cookies());
+        return new Result(Result.ResultFlag.SUCCESS.getKey(), "" + request.cookies());
     }
 
     @GetMapping("findAllMenus")
